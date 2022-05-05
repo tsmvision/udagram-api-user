@@ -1,2 +1,4 @@
-# Udagram User API 
+# Udagram User API
+
+## How to use
 
