@@ -6,7 +6,6 @@ import jwt from 'jsonwebtoken';
 import { config } from '../../../../config/config';
 import bcrypt from 'bcrypt';
 import { NextFunction } from 'connect';
-import { AnyLengthString } from 'aws-sdk/clients/comprehend';
 
 const emailError: ErrorMessageObject = {
     httpCode: 400,
@@ -174,8 +173,6 @@ router.post('/login', async (req: Request, res: Response) => {
 
         const authErrorMessageObject = getUserLoginHttpCodeAndErrorMessage(email, password, user, authValid);
 
-        // sendErrorMessageIfErrorExists(authErrorMessageObject, res);
-
         if (hasErrorMessage(authErrorMessageObject)) {
             return res.status(authErrorMessageObject.httpCode).send({
                 auth: authErrorMessageObject.auth,
@@ -202,8 +199,6 @@ router.post('/', async (req: Request, res: Response) => {
 
         const user = await User.findByPk(email);
         const authErrorMessageObject = getUserCreatingHttpCodeAndErrorMessage(email, plainTextPassword, user);
-
-        // sendErrorMessageIfErrorExists(authErrorMessageObject, res);
 
         if (hasErrorMessage(authErrorMessageObject)) {
             return res.status(authErrorMessageObject.httpCode).send({

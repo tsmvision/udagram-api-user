@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import { sequelize } from './sequelize';
-import { IndexRouter } from './controllers/v0/index.router';
+import { UserRouter } from './controllers/v0/users/routes/user.router';
 import { V0MODELS } from './controllers/v0/model.index';
 
 (async () => {
@@ -21,13 +21,8 @@ import { V0MODELS } from './controllers/v0/model.index';
       next();
     });
   
-    app.use('/v0/', IndexRouter)
-  
-    // Root URI call
-    app.get( "/", async ( req, res ) => {
-      res.redirect( "/v0" );
-    } );
-    
+    app.use('/', UserRouter)
+      
     // Start the Server
     app.listen( port, () => {
         console.log();
