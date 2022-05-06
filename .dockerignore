@@ -1,0 +1,8 @@
+*.yml
+*.yaml
+.env*
+README*
+*.http
+node_modules/
+www/
+.gitignore
