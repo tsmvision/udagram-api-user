@@ -5,9 +5,9 @@ node_js:
 services:
   - docker
 
-branches:
-  only:
-  - main
+# branches:
+#   only:
+#   - main
 
 # Pre-testing installs
 install:
