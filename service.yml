@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: udagram-api-user-svc
+  name: udagram-api-user
   labels:
     run: udagram-api-user
 spec:
