@@ -9,4 +9,4 @@ spec:
   - protocol: TCP
     port: 8080
   selector:
-    run: udagram-api-user
+    app: udagram-api-user
