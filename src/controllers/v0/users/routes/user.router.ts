@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { User } from '../models/User';
 import { AuthRouter } from './auth.router';
+import logger from '../../../../logger';
 
 const router: Router = Router();
 
@@ -12,7 +13,10 @@ router.get('/', async (req: Request, res: Response) => {
 
 router.get('/:id', async (req: Request, res: Response) => {
     let { id } = req.params;
+    logger.info(id);
     const item = await User.findByPk(id);
+    
+    logger.info(item);
     res.send(item);
 });
 

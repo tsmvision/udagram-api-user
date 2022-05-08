@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 import { config } from '../../../../config/config';
 import bcrypt from 'bcrypt';
 import { NextFunction } from 'connect';
-import { AnyLengthString } from 'aws-sdk/clients/comprehend';
+import logger from '../../../../logger';
 
 const emailError: ErrorMessageObject = {
     httpCode: 400,
@@ -168,8 +168,10 @@ router.get('/verification',
 router.post('/login', async (req: Request, res: Response) => {
     try {
         const {email, password}: {email: string | undefined, password: string | undefined} = req.body
+        logger.info(`email: {email}`);
     
         const user = await User.findByPk(email);
+
         const authValid = await comparePasswords(password, user?.password_hash);
 
         const authErrorMessageObject = getUserLoginHttpCodeAndErrorMessage(email, password, user, authValid);
