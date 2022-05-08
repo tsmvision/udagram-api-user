@@ -168,10 +168,11 @@ router.get('/verification',
 router.post('/login', async (req: Request, res: Response) => {
     try {
         const {email, password}: {email: string | undefined, password: string | undefined} = req.body
-        logger.info(`email: {email}`);
+        logger.info(`email from request: {email}`);
     
         const user = await User.findByPk(email);
 
+        logger.info(`user email from db: ${user ? user.email: ""}`);
         const authValid = await comparePasswords(password, user?.password_hash);
 
         const authErrorMessageObject = getUserLoginHttpCodeAndErrorMessage(email, password, user, authValid);
