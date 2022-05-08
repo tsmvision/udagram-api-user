@@ -1,8 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
 import { sequelize } from './sequelize';
-import { IndexRouter } from './controllers/v0/index.router';
 import { V0MODELS } from './controllers/v0/model.index';
+import { UserRouter } from './controllers/v0/users/routes/user.router';
 
 (async () => {
   try {
@@ -21,7 +21,7 @@ import { V0MODELS } from './controllers/v0/model.index';
       next();
     });
   
-    app.use('/', IndexRouter)
+    app.use('/', UserRouter)
 
     // Start the Server
     app.listen( port, () => {
